@@ -1,4 +1,5 @@
 import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { CircleUserRound } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 export default function Navbar() {
@@ -28,7 +29,7 @@ export default function Navbar() {
           </span>
         </Link>
 
-        {/* Navigation Links & Auth Buttons */}
+        {/* Navigation Links & User Actions */}
         <div className="flex items-center gap-7">
           <nav className="hidden md:flex items-center gap-7">
             <NavLink to="/" end className={navLinkClass}>
@@ -47,15 +48,16 @@ export default function Navbar() {
 
           {user ? (
             <div className="flex items-center gap-4">
-              <NavLink to="/dashboard" className={navLinkClass}>
-                Dashboard
-              </NavLink>
-              <span className="text-sm text-gray-500 hidden lg:inline">
-                {user.full_name}
-              </span>
+              <Link
+                to="/dashboard"
+                title={`${user.full_name} — Dashboard`}
+                className="text-gray-800 hover:text-[#2B7FFF] transition-colors"
+              >
+                <CircleUserRound className="w-6 h-6 stroke-[1.75]" />
+              </Link>
               <button
                 onClick={handleLogout}
-                className="rounded-lg border border-gray-300 px-4 py-1.5 text-base font-medium text-gray-700 hover:border-red-500 hover:text-red-600 transition-colors cursor-pointer"
+                className="text-sm font-medium text-gray-500 hover:text-red-600 transition-colors cursor-pointer"
               >
                 Sign out
               </button>
