@@ -35,29 +35,28 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-[calc(100vh-3.5rem)] bg-[#F9FAFB] flex flex-col items-center justify-center px-4 py-12">
+    <div className="min-h-[calc(100vh-4rem)] bg-[#F9FAFB] flex flex-col items-center pt-20 sm:pt-28 pb-16 px-4">
       {/* Heading outside card */}
-      <div className="text-center mb-7">
-        <h1 className="text-2xl sm:text-[26px] font-bold text-gray-900 tracking-tight">
+      <div className="text-center mb-8">
+        <h1 className="text-3xl font-bold text-gray-900 tracking-tight">
           Welcome Back
         </h1>
-        <p className="text-sm text-gray-500 mt-1.5">
-          Sign in to continue to ELIF
+        <p className="text-base text-gray-500 mt-1.5">
+          Sign in to continue to FINDIT
         </p>
       </div>
 
       {/* Main Card */}
-      <div className="w-full max-w-[420px] bg-white rounded-xl border border-gray-200/90 shadow-xs p-7 sm:p-8">
+      <div className="w-full max-w-[460px] bg-white rounded-xl border border-gray-200 shadow-sm p-8 sm:p-9">
         {error && (
-          <div className="mb-5 p-3 rounded-lg bg-red-50 border border-red-200 text-xs text-red-600">
+          <div className="mb-5 p-3 rounded-lg bg-red-50 border border-red-200 text-sm text-red-600">
             {error}
           </div>
         )}
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Email Address */}
           <div>
-            <label className="block text-xs font-medium text-gray-700 mb-1.5">
+            <label className="block text-sm font-medium text-gray-700 mb-1.5">
               Email Address
             </label>
             <input
@@ -66,13 +65,12 @@ export default function Login() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
-              className="w-full rounded-lg border border-gray-200 px-3.5 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:border-[#2B7FFF] focus:outline-none"
+              className="w-full rounded-lg border border-gray-200 px-3.5 py-2.5 text-base text-gray-900 placeholder:text-gray-400 focus:border-[#2B7FFF] focus:outline-none"
             />
           </div>
 
-          {/* Password */}
           <div>
-            <label className="block text-xs font-medium text-gray-700 mb-1.5">
+            <label className="block text-sm font-medium text-gray-700 mb-1.5">
               Password
             </label>
             <div className="relative">
@@ -82,7 +80,7 @@ export default function Login() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter your password"
-                className="w-full rounded-lg border border-gray-200 pl-3.5 pr-10 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:border-[#2B7FFF] focus:outline-none"
+                className="w-full rounded-lg border border-gray-200 pl-3.5 pr-10 py-2.5 text-base text-gray-900 placeholder:text-gray-400 focus:border-[#2B7FFF] focus:outline-none"
               />
               <button
                 type="button"
@@ -95,9 +93,8 @@ export default function Login() {
             </div>
           </div>
 
-          {/* Remember Me & Forgot Password */}
           <div className="flex items-center justify-between pt-0.5">
-            <label className="flex items-center gap-2 text-xs text-gray-600 cursor-pointer">
+            <label className="flex items-center gap-2 text-sm text-gray-600 cursor-pointer">
               <input
                 type="checkbox"
                 checked={rememberMe}
@@ -109,33 +106,30 @@ export default function Login() {
 
             <Link
               to="/forgot-password"
-              className="text-xs text-[#2B7FFF] hover:underline"
+              className="text-sm text-[#2B7FFF] hover:underline"
             >
               Forgot password?
             </Link>
           </div>
 
-          {/* Primary Submit Button */}
           <button
             type="submit"
             disabled={submitting}
-            className="w-full mt-2 rounded-lg bg-[#2B7FFF] hover:bg-[#1E6CEB] py-2.5 text-sm font-medium text-white transition-colors disabled:opacity-60 cursor-pointer"
+            className="w-full mt-2 rounded-lg bg-[#2B7FFF] hover:bg-[#1E6CEB] py-2.5 text-base font-medium text-white transition-colors disabled:opacity-60 cursor-pointer"
           >
             {submitting ? 'Signing In...' : 'Sign In'}
           </button>
         </form>
 
-        {/* Divider */}
-        <p className="text-center text-xs text-gray-500 my-5">
+        <p className="text-center text-sm text-gray-500 my-5">
           Or continue with
         </p>
 
-        {/* Left-aligned Google Button matching Figma */}
         <div className="grid grid-cols-2 gap-3">
           <button
             type="button"
             onClick={handleGoogleAuth}
-            className="flex items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white py-2.5 px-3 text-xs font-medium text-gray-700 hover:bg-gray-50 transition-colors cursor-pointer"
+            className="flex items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white py-2.5 px-3 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors cursor-pointer"
           >
             <svg className="w-4 h-4" viewBox="0 0 24 24">
               <path
@@ -161,7 +155,7 @@ export default function Login() {
       </div>
 
       {/* Footer Link outside card */}
-      <p className="mt-6 text-xs text-gray-600">
+      <p className="mt-6 text-sm text-gray-600">
         Don&apos;t have an account?{' '}
         <Link to="/register" className="text-[#2B7FFF] font-medium hover:underline">
           Sign up

@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
 export default function Navbar() {
@@ -10,31 +10,73 @@ export default function Navbar() {
     navigate('/login');
   };
 
+  const navLinkClass = ({ isActive }) =>
+    `text-base font-medium transition-colors ${
+      isActive ? 'text-[#2B7FFF]' : 'text-gray-700 hover:text-[#2B7FFF]'
+    }`;
+
   return (
-    <header className="w-full bg-white border-b border-gray-200/80">
-      <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
+    <header className="w-full bg-white border-b border-gray-200/80 sticky top-0 z-40">
+      <div className="w-full px-8 sm:px-14 h-16 flex items-center justify-between">
+        {/* Brand */}
         <Link to="/" className="flex items-baseline gap-2.5">
-          <span className="text-lg font-extrabold tracking-tight text-[#2B7FFF]">
-            ELIF
+          <span className="text-xl font-extrabold tracking-tight text-[#2B7FFF]">
+            FINDIT
           </span>
-          <span className="text-xs text-gray-500 font-normal">
-            Even Lost, I Found
+          <span className="text-sm text-gray-500 font-normal">
+            You can find it here
           </span>
         </Link>
 
-        {user && (
-          <div className="flex items-center gap-4 text-sm">
-            <span className="text-gray-600 hidden sm:inline">
-              {user.full_name}
-            </span>
-            <button
-              onClick={handleLogout}
-              className="text-gray-600 hover:text-red-600 font-medium transition-colors cursor-pointer"
-            >
-              Sign out
-            </button>
-          </div>
-        )}
+        {/* Navigation Links & Auth Buttons */}
+        <div className="flex items-center gap-7">
+          <nav className="hidden md:flex items-center gap-7">
+            <NavLink to="/" end className={navLinkClass}>
+              Home
+            </NavLink>
+            <NavLink to="/lost" className={navLinkClass}>
+              Lost Items
+            </NavLink>
+            <NavLink to="/found" className={navLinkClass}>
+              Found Items
+            </NavLink>
+            <NavLink to="/post" className={navLinkClass}>
+              Report Item
+            </NavLink>
+          </nav>
+
+          {user ? (
+            <div className="flex items-center gap-4">
+              <NavLink to="/dashboard" className={navLinkClass}>
+                Dashboard
+              </NavLink>
+              <span className="text-sm text-gray-500 hidden lg:inline">
+                {user.full_name}
+              </span>
+              <button
+                onClick={handleLogout}
+                className="rounded-lg border border-gray-300 px-4 py-1.5 text-base font-medium text-gray-700 hover:border-red-500 hover:text-red-600 transition-colors cursor-pointer"
+              >
+                Sign out
+              </button>
+            </div>
+          ) : (
+            <div className="flex items-center gap-3">
+              <Link
+                to="/login"
+                className="rounded-lg border border-[#2B7FFF] px-5 py-1.5 text-base font-medium text-[#2B7FFF] hover:bg-blue-50 transition-colors"
+              >
+                Log in
+              </Link>
+              <Link
+                to="/register"
+                className="rounded-lg bg-[#2B7FFF] px-5 py-1.5 text-base font-medium text-white hover:bg-[#1E6CEB] transition-colors"
+              >
+                Sign up
+              </Link>
+            </div>
+          )}
+        </div>
       </div>
     </header>
   );
